@@ -1,0 +1,246 @@
+:root {
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --accent: #2a6f97;
+  --text: #243b55;
+  --muted: #667a90;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+header {
+  background: linear-gradient(135deg, #2a6f97 0%, #4f98b2 100%);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+header p {
+  margin: 12px auto 0;
+  max-width: 700px;
+  color: #e0f1ff;
+  font-size: 1.05rem;
+}
+main {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px 40px;
+}
+.intro {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.intro p {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+.phases {
+  display: grid;
+  gap: 20px;
+}
+.phase {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  border-top: 5px solid var(--accent);
+}
+.phase h2 {
+  margin-top: 0;
+  color: var(--accent);
+}
+.phase p {
+  color: var(--muted);
+}
+.phase-number {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+.diagram {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  margin-top: 20px;
+}
+.diagram h2 {
+  margin-top: 0;
+  color: var(--accent);
+}
+.diagram ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+.diagram li {
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #eef5fb;
+  color: var(--text);
+  border-left: 5px solid var(--accent);
+}
+.hero {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+.hero-text {
+  background: var(--card);
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+.hero-text .eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.hero-figure,
+.content-card,
+.table-card,
+.image-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+.hero-figure {
+  text-align: center;
+}
+.hero-figure figcaption,
+.figure-caption {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+.hero-figure svg,
+.image-figure svg {
+  width: 100%;
+  height: auto;
+  max-width: 720px;
+}
+.content-card h2,
+.table-card h2,
+.examples h2,
+.usage h2,
+.not-usage h2 {
+  margin-top: 0;
+  color: var(--accent);
+}
+.content-card h3,
+.example-item h3 {
+  margin-bottom: 8px;
+  color: #1f5a72;
+}
+.content-card ul,
+.usage ul,
+.not-usage ul {
+  padding-left: 20px;
+}
+.content-card ul li,
+.usage ul li,
+.not-usage ul li {
+  margin-bottom: 10px;
+}
+.content-card pre {
+  background: #eef5fb;
+  padding: 18px;
+  border-radius: 14px;
+  overflow-x: auto;
+  font-family: Consolas, Monaco, 'Courier New', monospace;
+  font-size: 0.92rem;
+  margin: 20px 0 0;
+}
+.content-card table,
+.table-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+.content-card th,
+.content-card td,
+.table-card th,
+.table-card td {
+  border: 1px solid #d8e5f0;
+  padding: 12px 14px;
+  text-align: left;
+}
+.content-card thead th,
+.table-card thead th {
+  background: #f1f7fc;
+}
+.comparison {
+  display: grid;
+  gap: 20px;
+  margin-top: 24px;
+}
+.example-item {
+  margin-bottom: 18px;
+}
+.examples {
+  margin-top: 24px;
+}
+.examples p,
+.sources ol {
+  margin: 0;
+}
+.sources ol {
+  padding-left: 20px;
+}
+.sources li {
+  margin-bottom: 14px;
+}
+.sources a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.sources a:hover {
+  text-decoration: underline;
+}
+.image-card {
+  display: grid;
+  gap: 18px;
+}
+@media (min-width: 720px) {
+  .intro {
+    grid-template-columns: 1fr 1fr;
+  }
+  .phases {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .comparison {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 980px) {
+  .hero {
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+  }
+}

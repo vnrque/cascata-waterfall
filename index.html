@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modello a Cascata</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Presentazione del Modello a Cascata</h1>
+    <p>Una panoramica chiara e semplice del processo di sviluppo software a cascata: fasi lineari, consegne progressive e approccio sequenziale.</p>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Il Modello di Sviluppo Software a Cascata (Waterfall Model)</p>
+        <h2>Progetto di ricerca — Maggio 2026</h2>
+        <p>Il modello a cascata è il più tradizionale modello di ciclo di vita del software. È un approccio predittivo e lineare in cui i requisiti vengono definiti e analizzati all'inizio del progetto, prima di avviare qualunque altra attività.</p>
+      </div>
+      <figure class="hero-figure">
+        <svg class="waterfall-svg" viewBox="0 0 720 450" aria-labelledby="flowTitle flowDesc" role="img">
+          <title id="flowTitle">Diagramma del modello a cascata</title>
+          <desc id="flowDesc">Sei blocchi sequenziali con frecce verso il basso che rappresentano le fasi del modello a cascata.</desc>
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2a6f97"/>
+              <stop offset="100%" stop-color="#4f98b2"/>
+            </linearGradient>
+          </defs>
+          <rect x="40" y="20" width="640" height="45" rx="16" fill="url(#gradient)" opacity="0.95"/>
+          <text x="360" y="52" text-anchor="middle" fill="white" font-size="18" font-weight="700">1. Analisi dei requisiti</text>
+          <polygon points="360,65 350,80 370,80" fill="#2a6f97"/>
+          <rect x="40" y="95" width="640" height="45" rx="16" fill="#eef5fb"/>
+          <text x="360" y="127" text-anchor="middle" fill="#243b55" font-size="18" font-weight="700">2. Progettazione</text>
+          <polygon points="360,140 350,155 370,155" fill="#4f98b2"/>
+          <rect x="40" y="170" width="640" height="45" rx="16" fill="#eef5fb"/>
+          <text x="360" y="202" text-anchor="middle" fill="#243b55" font-size="18" font-weight="700">3. Implementazione</text>
+          <polygon points="360,215 350,230 370,230" fill="#2a6f97"/>
+          <rect x="40" y="245" width="640" height="45" rx="16" fill="#eef5fb"/>
+          <text x="360" y="277" text-anchor="middle" fill="#243b55" font-size="18" font-weight="700">4. Collaudo / Test</text>
+          <polygon points="360,290 350,305 370,305" fill="#4f98b2"/>
+          <rect x="40" y="315" width="640" height="45" rx="16" fill="#eef5fb"/>
+          <text x="360" y="347" text-anchor="middle" fill="#243b55" font-size="18" font-weight="700">5. Rilascio</text>
+          <polygon points="360,360 350,375 370,375" fill="#2a6f97"/>
+          <rect x="40" y="385" width="640" height="45" rx="16" fill="#eef5fb"/>
+          <text x="360" y="417" text-anchor="middle" fill="#243b55" font-size="18" font-weight="700">6. Manutenzione</text>
+        </svg>
+        <figcaption>Schema semplificato delle fasi principali del modello a cascata.</figcaption>
+      </figure>
+    </section>
+
+    <section class="intro">
+      <div class="content-card">
+        <h2>1. Cos'è il Modello a Cascata</h2>
+        <p>Il <strong>modello a cascata</strong> (in inglese <em>waterfall model</em>) è il più tradizionale modello di ciclo di vita del software. Si tratta di un approccio <strong>predittivo e lineare</strong> allo sviluppo software: i requisiti del progetto vengono definiti, raccolti e analizzati a priori, all'inizio del progetto, prima di avviare qualunque altra attività.</p>
+        <p>Il nome "a cascata" deriva dalla rappresentazione grafica del modello: ogni fase scorre nella successiva come l'acqua in una cascata, generando un output che diventa l'input della fase seguente.</p>
+        <p>È contrapposto agli <strong>approcci agili e adattivi</strong>, che invece prevedono iterazioni continue e un coinvolgimento progressivo del cliente.</p>
+      </div>
+      <div class="content-card image-card">
+        <h2>Origini storiche</h2>
+        <p>I primi utilizzi documentati di approcci predittivi risalgono agli anni '20-'40. Il modello fu formalizzato per la prima volta nel <strong>1956</strong> da <strong>Herbert D. Benington</strong>, presso un simposio della U.S. Navy sul progetto SAGE (<em>Semi-Automatic Ground Environment</em>).</p>
+        <p>In seguito il modello a cascata è stato visto come una risposta alla <em>software crisis</em>, introducendo uno sviluppo software concepito come un <strong>processo industriale strutturato</strong> anziché come “code and fix”.</p>
+        <div class="image-figure">
+          <svg viewBox="0 0 240 140" aria-hidden="true">
+            <rect x="8" y="8" width="224" height="124" rx="16" fill="#eef5fb" stroke="#2a6f97" stroke-width="2"/>
+            <circle cx="60" cy="70" r="26" fill="#2a6f97" opacity="0.85"/>
+            <circle cx="180" cy="70" r="26" fill="#4f98b2" opacity="0.85"/>
+            <path d="M 82 70 H 158" stroke="#243b55" stroke-width="6" stroke-linecap="round"/>
+            <path d="M 154 66 L 162 70 L 154 74" fill="#243b55"/>
+            <text x="60" y="76" text-anchor="middle" fill="white" font-size="14" font-weight="700">1956</text>
+            <text x="180" y="76" text-anchor="middle" fill="white" font-size="14" font-weight="700">1970</text>
+          </svg>
+          <p class="figure-caption">Benington e Royce: le origini del modello a cascata e la sua critica.</p>
+        </div>
+        <p>Nel 1970 Winston W. Royce pubblicò l'articolo <em>Managing the Development of Large Software Systems</em>, spesso citato in modo errato come l'origine del modello a cascata. In realtà Royce propose un modello iterativo-incrementale e criticò il ciclo di vita lineare.</p>
+      </div>
+    </section>
+
+    <section class="pillars content-card">
+      <h2>2. Come funziona: Fasi e schema</h2>
+      <p>I capisaldi del modello sono tre:</p>
+      <ul>
+        <li>Il processo di sviluppo è diviso in <strong>fasi sequenziali</strong></li>
+        <li>Ogni fase produce un <strong>output</strong> usato come <strong>input</strong> per la fase successiva</li>
+        <li>Ogni fase viene <strong>documentata</strong> con specifici deliverable</li>
+      </ul>
+      <pre><code>┌──────────────────────────┐
+│  1. ANALISI DEI REQUISITI │
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐
+│    2. PROGETTAZIONE       │
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐
+│   3. IMPLEMENTAZIONE      │
+│      (Codifica)           │
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐
+│   4. COLLAUDO / TEST      │
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐
+│   5. RILASCIO             │
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐
+│   6. MANUTENZIONE         │
+└──────────────────────────┘</code></pre>
+    </section>
+
+    <section class="phases">
+      <article class="phase">
+        <span class="phase-number">1</span>
+        <h2>Analisi dei Requisiti</h2>
+        <p><strong>Scopo:</strong> Identificare e descrivere con precisione le esigenze del cliente, stabilendo <em>cosa</em> dovrà fare il software.</p>
+        <p><strong>Attori coinvolti:</strong> cliente/committente, analisti, sviluppatori.</p>
+        <p><strong>Output principali:</strong></p>
+        <ul>
+          <li><em>Software Requirements Specification</em> (SRS) — standard IEEE Std 830-1998</li>
+          <li>Studio di fattibilità tecnica ed economica</li>
+          <li>Piano di test (facoltativo in questa fase)</li>
+          <li>Eventuale manuale utente preliminare</li>
+        </ul>
+        <p><strong>Problemi tipici:</strong> requisiti poco chiari, assenza di un linguaggio comune tra le parti, impossibilità di prevedere tutti i requisiti fin dall'inizio.</p>
+      </article>
+      <article class="phase">
+        <span class="phase-number">2</span>
+        <h2>Progettazione</h2>
+        <p><strong>Scopo:</strong> Definire <em>come</em> il sistema soddisferà i requisiti, progettandone l'architettura complessiva e i singoli componenti.</p>
+        <p><strong>Attori coinvolti:</strong> software architect, esperti di reti, database e sistemi.</p>
+        <p><strong>Output principali:</strong></p>
+        <ul>
+          <li>Architettura di alto livello del sistema</li>
+          <li>Progetto di costruzione del software</li>
+          <li>Pianificazione dei test per i singoli componenti</li>
+        </ul>
+        <p><strong>Problemi tipici:</strong> molte decisioni da prendere contemporaneamente; non tutte le strutture architetturali sono equivalenti.</p>
+      </article>
+      <article class="phase">
+        <span class="phase-number">3</span>
+        <h2>Implementazione</h2>
+        <p><strong>Scopo:</strong> Realizzare concretamente il software progettato, traducendolo in codice sorgente.</p>
+        <p><strong>Attori coinvolti:</strong> software developer (programmatori).</p>
+        <p><strong>Output principali:</strong></p>
+        <ul>
+          <li>Moduli software implementati e testati singolarmente</li>
+          <li>Attività di debug</li>
+          <li>Eventuale realizzazione di database</li>
+          <li>Documentazione tecnica</li>
+        </ul>
+      </article>
+      <article class="phase">
+        <span class="phase-number">4</span>
+        <h2>Collaudo / Test</h2>
+        <p><strong>Scopo:</strong> Verificare il corretto funzionamento del software, sia a livello di singoli moduli sia come sistema integrato.</p>
+        <p><strong>Attività incluse:</strong></p>
+        <ul>
+          <li><em>Alpha test</em>: verifica interna del prodotto completo</li>
+          <li><em>Beta test</em>: verifica con gli utenti finali</li>
+          <li><em>Test di accettazione</em>: verifica formale di conformità ai requisiti</li>
+        </ul>
+        <p><strong>Output principali:</strong> sistema funzionante e lista di anomalie da correggere.</p>
+      </article>
+      <article class="phase">
+        <span class="phase-number">5</span>
+        <h2>Rilascio</h2>
+        <p><strong>Scopo:</strong> Rendere il software disponibile agli utenti finali.</p>
+        <p><strong>Attività incluse:</strong> installazione, formazione degli utenti e migrazione di dati.</p>
+      </article>
+      <article class="phase">
+        <span class="phase-number">6</span>
+        <h2>Manutenzione</h2>
+        <p><strong>Scopo:</strong> Gestire il software per tutto il periodo successivo alla consegna fino alla dismissione.</p>
+        <p>È tipicamente la fase più lunga dell'intero ciclo, e implica analisi, sviluppo e collaudo continui.</p>
+        <p><strong>Tre tipi di manutenzione:</strong></p>
+        <table>
+          <thead>
+            <tr><th>Tipo</th><th>Descrizione</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Correttiva</strong></td><td>Correzione di errori sfuggiti al collaudo o introdotti successivamente</td></tr>
+            <tr><td><strong>Evolutiva</strong></td><td>Aggiunta o miglioramento di funzionalità</td></tr>
+            <tr><td><strong>Adattiva</strong></td><td>Adeguamento ai cambiamenti dell'ambiente tecnologico</td></tr>
+          </tbody>
+        </table>
+        <p>Ogni intervento di manutenzione implica nuovi test di regressione per verificare che le modifiche non compromettano le funzionalità preesistenti.</p>
+      </article>
+    </section>
+
+    <section class="comparison">
+      <div class="table-card">
+        <h2>3. Vantaggi</h2>
+        <table>
+          <thead>
+            <tr><th>Vantaggio</th><th>Dettaglio</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Struttura chiara e semplice</strong></td><td>Le fasi del progetto sono ben distinte e facili da comprendere</td></tr>
+            <tr><td><strong>Buona documentazione</strong></td><td>Ogni fase produce documenti formali che tracciano le decisioni prese</td></tr>
+            <tr><td><strong>Controllo avanzamento</strong></td><td>La suddivisione in milestone facilita il monitoraggio del progetto</td></tr>
+            <tr><td><strong>Pianificazione anticipata</strong></td><td>All'inizio è possibile stimare costi, tempi e risorse con discreta precisione</td></tr>
+            <tr><td><strong>Rappresentazione temporale</strong></td><td>Si presta bene a una pianificazione su Gantt</td></tr>
+            <tr><td><strong>Parallelizzazione</strong></td><td>La scomposizione in sottofasi può consentire di parallelizzare alcune attività</td></tr>
+            <tr><td><strong>Disciplina e rigore</strong></td><td>Impone pianificazione e documentazione sistematica</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-card">
+        <h2>4. Svantaggi</h2>
+        <table>
+          <thead>
+            <tr><th>Svantaggio</th><th>Dettaglio</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Rigidità</strong></td><td>Una volta chiusa una fase non è possibile tornare indietro senza ripercorrere tutte le fasi precedenti</td></tr>
+            <tr><td><strong>Requisiti congelati</strong></td><td>I requisiti devono essere completi e definitivi dall'inizio</td></tr>
+            <tr><td><strong>Utente escluso</strong></td><td>Il cliente partecipa solo nella fase iniziale e a progetto consegnato</td></tr>
+            <tr><td><strong>Errori tardivi</strong></td><td>I difetti gravi si scoprono solo nella fase di test</td></tr>
+            <tr><td><strong>Monoliticità</strong></td><td>Converge verso un'unica data di rilascio, spesso distante nel tempo</td></tr>
+            <tr><td><strong>Obsolescenza</strong></td><td>Il software può risultare già obsoleto al momento della consegna</td></tr>
+            <tr><td><strong>Scollamento tra fasi</strong></td><td>Attività distinte possono non essere armonizzate correttamente</td></tr>
+            <tr><td><strong>Burocrazia</strong></td><td>L'obbligo di documentazione può appesantire il processo</td></tr>
+            <tr><td><strong>Costi elevati</strong></td><td>Specifiche incomplete generano molti interventi successivi</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="usage">
+      <div class="content-card">
+        <h2>5. Quando usarlo</h2>
+        <ul>
+          <li><strong>Requisiti stabili e ben definiti</strong> fin dall'inizio</li>
+          <li><strong>Progetti piccoli o di complessità limitata</strong></li>
+          <li><strong>Progetti di ingegneria tradizionale</strong> dove le fasi sono sequenziali</li>
+          <li><strong>Ambienti regolamentati o militari</strong> con documentazione formale richiesta</li>
+          <li><strong>Team geograficamente distribuiti</strong> con comunicazione continua difficile</li>
+          <li><strong>Contratti a prezzo fisso</strong> con specifiche dettagliate iniziali</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="usage not-usage">
+      <div class="content-card">
+        <h2>6. Quando NON usarlo</h2>
+        <ul>
+          <li><strong>Requisiti incerti o in evoluzione</strong></li>
+          <li><strong>Progetti di grandi dimensioni e lunga durata</strong></li>
+          <li><strong>Software innovativo o sperimentale</strong></li>
+          <li><strong>Contesti in rapida evoluzione tecnologica</strong></li>
+          <li><strong>Progetti in cui la qualità percepita dell'utente è centrale</strong></li>
+          <li><strong>Team piccoli e agili</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="examples content-card">
+      <h2>7. Esempi concreti e contesti di utilizzo</h2>
+      <div class="example-item">
+        <h3>Settore militare e aerospaziale</h3>
+        <p>Lo standard <strong>MIL-STD-2167</strong> definisce un ciclo di vita a cascata con macro-attività sequenziali, ed è il contesto originale in cui il modello è nato.</p>
+      </div>
+      <div class="example-item">
+        <h3>Progetto SAGE (1956)</h3>
+        <p>Il primo caso documentato di approccio predittivo strutturato per il sistema di difesa aerea della U.S. Navy.</p>
+      </div>
+      <div class="example-item">
+        <h3>Grandi infrastrutture</h3>
+        <p>Oggi è riferito soprattutto a grandi opere ingegneristiche dove i requisiti fisici sono definiti per legge e le variazioni comportano costi enormi.</p>
+      </div>
+      <div class="example-item">
+        <h3>Sviluppo software anni '70-'90</h3>
+        <p>Prima dell'avvento delle metodologie agili, era lo standard nell'IT per sistemi bancari, gestionali e embedded.</p>
+      </div>
+      <div class="example-item">
+        <h3>Alternativa evolutiva: il modello di Royce</h3>
+        <p>Royce propose una versione estesa con verifica dopo ogni fase, almeno due iterazioni e coinvolgimento del cliente, avvicinandosi ai moderni approcci ibridi.</p>
+      </div>
+    </section>
+
+    <section class="sources">
+      <h2>8. Sitografia / Bibliografia</h2>
+      <ol>
+        <li><strong>Wikipedia — Modello a cascata</strong> (<a href="https://it.wikipedia.org/wiki/Modello_a_cascata" target="_blank" rel="noreferrer">link</a>)</li>
+        <li><strong>BrainyByte</strong> — "Il ciclo di vita del software: il Modello a cascata"</li>
+        <li><strong>IONOS</strong> — "Cos'è il modello a cascata?"</li>
+        <li><strong>Benington, H.D. (1956)</strong> — <em>Production of Large Computer Programs</em></li>
+        <li><strong>Royce, W.W. (1970)</strong> — <em>Managing the Development of Large Software Systems</em></li>
+        <li><strong>IEEE Std 830-1998</strong> — Standard per la SRS</li>
+        <li><strong>MIL-STD-2167 / DoD-STD-2167</strong> — Standard militare sul ciclo di vita del software</li>
+      </ol>
+    </section>
+  </main>
+  <footer>
+    <p>Samuele Conte - Elia Perini - Samuele Arnaudo</p>
+  </footer>
+</body>
+</html>
