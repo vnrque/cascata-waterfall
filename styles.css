@@ -1,246 +1,845 @@
+/* ========================================
+   VARIABILI E RESET
+   ======================================== */
 :root {
-  --bg: #f4f7fb;
-  --card: #ffffff;
-  --accent: #2a6f97;
-  --text: #243b55;
-  --muted: #667a90;
+  --cream: #FAF7F2;        /* Colore di sfondo principale (crema chiaro) */
+  --dark: #1A1714;         /* Colore scuro per testo principale */
+  --gold: #C8A96E;         /* Colore oro per accenti secondari */
+  --muted: #6B6560;        /* Grigio scuro per testo meno importante */
+  --accent: #1E5A8B;       /* Blu principale per accenti */
+  --accent-light: #E8F2F9; /* Blu molto chiaro per sfondo card */
+  --success: #2E7D52;      /* Verde per vantaggi */
+  --danger: #8B2635;       /* Rosso per svantaggi */
+  /* Transizione fluida usata ovunque per hover/animazioni */
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-* {
-  box-sizing: border-box;
-}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; } /* Scroll fluido quando clicchi i link */
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
+  background: var(--cream);
+  color: var(--dark);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.8;     /* Spaziatura tra le righe per leggibilità */
+  font-size: 18px;       /* Base grande per LIM */
 }
-header {
-  background: linear-gradient(135deg, #2a6f97 0%, #4f98b2 100%);
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
+
+/* ========================================
+   NAVBAR
+   ======================================== */
+nav.waterfall-nav {
+  background: var(--dark);
+  padding: 1.1rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;       /* Rimane visibile durante scroll */
+  top: 0;
+  z-index: 100;           /* Sopra tutto il resto */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-header h1 {
-  margin: 0;
-  font-size: 2.5rem;
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 0.18em; /* Spaziatura tra lettere per eleganza */
+  text-decoration: none;
+  transition: var(--transition);
 }
-header p {
-  margin: 12px auto 0;
+
+.nav-logo:hover { color: var(--gold); } /* Cambia colore al passaggio del mouse */
+.nav-logo span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  gap: 2rem; /* Spazio tra i link */
+}
+
+.nav-links span {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  padding-bottom: 0.3rem;
+}
+
+/* Linea di underline animata al hover */
+.nav-links span::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;             /* Parte da larghezza 0 */
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+
+.nav-links span:hover { color: var(--gold); }
+.nav-links span:hover::after { width: 100%; } /* Si espande al 100% */
+
+/* ========================================
+   HERO SECTION - La parte più grande all'inizio
+   ======================================== */
+.hero-section {
+  background: linear-gradient(135deg, var(--dark), #2a2420);
+  color: #fff;
+  padding: 8rem 4% 6rem;
+  position: relative;
+  overflow: hidden;    /* Nasconde gli elementi decorativi fuori dai bordi */
+  min-height: 100vh;   /* Occupa l'intera altezza della finestra */
+  display: flex;
+  align-items: center; /* Centra verticalmente il contenuto */
+}
+
+/* Sfere decorative di sfondo che galleggiano */
+.hero-section::before,
+.hero-section::after {
+  content: '';
+  position: absolute;
+  opacity: 0.1;
+  animation: float 8s ease-in-out infinite; /* Animazione galleggiamento */
+}
+
+.hero-section::before {
+  top: -50%; right: -10%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, var(--accent), transparent 70%);
+}
+
+.hero-section::after {
+  bottom: -30%; left: 10%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, var(--gold), transparent 70%);
+  opacity: 0.08;
+  animation-direction: reverse; /* Va al contrario */
+}
+
+/* Animazione di galleggiamento su e giù */
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(40px) scale(1.05); } /* Si alza e ingrandisce */
+}
+
+/* Animazione di entrata dal basso verso l'alto */
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); } /* Parte invisibile più basso */
+  to { opacity: 1; transform: translateY(0); }      /* Arriva a posto visibile */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;          /* Sopra le sfere di sfondo */
   max-width: 700px;
-  color: #e0f1ff;
+  animation: slideInUp 0.8s ease 0.2s backwards; /* Entra con ritardo */
+}
+
+.hero-tag {
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  animation: slideInUp 0.8s ease 0s backwards;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  /* clamp = adatta font size in base alla larghezza della finestra */
+  font-size: clamp(3rem, 10vw, 5.5rem); /* Min 3rem, Max 5.5rem */
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  animation: slideInUp 0.8s ease 0.1s backwards;
+}
+
+.hero-desc {
+  font-size: 1.35rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.85); /* Bianco semi-trasparente */
+  margin-bottom: 2rem;
+  animation: slideInUp 0.8s ease 0.2s backwards;
+}
+
+.btn-cta {
+  background: var(--accent);
+  color: #fff;
+  border: 2px solid transparent;
+  padding: 1.1rem 3.2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;    /* Nasconde l'effetto luccichio fuori dai bordi */
+  animation: slideInUp 0.8s ease 0.3s backwards;
+}
+
+.btn-cta:hover {
+  background: #153d63;
+  transform: translateY(-3px); /* Si alza leggermente */
+  box-shadow: 0 8px 20px rgba(30,90,139,0.3);
+}
+
+/* ========================================
+   SEZIONI GENERICHE
+   ======================================== */
+section { position: relative; }
+
+.sec-header {
+  text-align: center;
+  padding: 4rem 1rem 2rem;
+}
+
+.sec-header .eyebrow {
+  font-size: 0.95rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+
+.sec-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 7vw, 3.8rem); /* Responsivo: cresce con schermo */
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+/* Linea decorativa sotto i titoli */
+.sec-header .divider {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--gold)); /* Sfumatura da blu a oro */
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+.sec-desc {
+  font-size: 1.15rem;
+  color: var(--muted);
+  margin-top: 1.2rem;
+  max-width: 700px;
+  margin: 1.2rem auto 0; /* Centra orizzontalmente */
+}
+
+/* Titoli delle sottosezioni */
+.subsection-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--dark);
+  margin: 2.5rem 0 1.5rem;
+  font-weight: 700;
+}
+
+.max-width-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+
+/* Linea decorativa che svanisce ai lati */
+.divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #E8E2D8, transparent); /* Svanisce ai lati */
+  margin: 2rem 0;
+}
+
+/* ========================================
+   CARDS COMUNI - Usate per molte sezioni
+   ======================================== */
+/* Proprietà condivise tra diversi tipi di card */
+.definition-card,
+.pillar-card,
+.phase-card,
+.advantage-card,
+.disadvantage-card,
+.when-card,
+.example-card,
+.bib-item {
+  border-radius: 8px;
+  padding: 2rem 2.2rem;
+  transition: var(--transition); /* Animazione smooth al hover */
+}
+
+.definition-card {
+  background: var(--accent-light);
+  border-left: 4px solid var(--accent); /* Barra colorata a sinistra */
+  margin: 2rem 0;
+  box-shadow: 0 4px 15px rgba(30,90,139,0.1);
+}
+
+/* Card si sposta a destra al hover */
+.definition-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 25px rgba(30,90,139,0.15);
+}
+
+.definition-card h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--accent);
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.definition-card p {
+  color: var(--dark);
+  line-height: 1.9;
   font-size: 1.05rem;
 }
-main {
-  max-width: 1100px;
-  margin: 30px auto;
-  padding: 0 20px 40px;
-}
-.intro {
+
+/* ========================================
+   PILLARS GRID - I tre capisaldi
+   ======================================== */
+.three-pillars-grid {
   display: grid;
-  gap: 20px;
-  margin-bottom: 30px;
+  /* auto-fit = adatta colonne alla larghezza, minmax = larghezza minima/massima */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
 }
-.intro p {
-  background: var(--card);
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+
+.pillar-card {
+  background: #fff;
+  border-top: 4px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-.phases {
-  display: grid;
-  gap: 20px;
+
+/* Si alza e l'ombra aumenta */
+.pillar-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(30,90,139,0.15);
 }
-.phase {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-  border-top: 5px solid var(--accent);
-}
-.phase h2 {
-  margin-top: 0;
+
+.pillar-card h4 {
+  font-family: 'Playfair Display', serif;
   color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
 }
-.phase p {
+
+.pillar-card p,
+.historical-text {
   color: var(--muted);
+  line-height: 1.8;
+  font-size: 1.05rem;
 }
-.phase-number {
-  display: inline-block;
-  background: var(--accent);
-  color: white;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
-  border-radius: 50%;
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 12px;
+
+/* ========================================
+   TIMELINE - La linea verticale con le 6 fasi
+   ======================================== */
+.timeline-container { padding: 3rem 4%; }
+
+.timeline {
+  position: relative;
+  padding: 2rem 0;
 }
-.diagram {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-  margin-top: 20px;
+
+/* La linea verticale centrale */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;             /* Metà della pagina */
+  transform: translateX(-50%); /* Centra la linea */
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent), var(--gold)); /* Sfumatura blu-oro */
+  border-radius: 2px;
 }
-.diagram h2 {
-  margin-top: 0;
-  color: var(--accent);
+
+.timeline-item {
+  margin-bottom: 3.5rem;
+  position: relative;
+  animation: slideInUp 0.6s ease both; /* Entra dal basso */
 }
-.diagram ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 12px;
+
+/* Ciascuno item entra con ritardo progressivo */
+.timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.timeline-item:nth-child(5) { animation-delay: 0.5s; }
+.timeline-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* Item dispari a sinistra */
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-left: 0;
+  margin-right: auto;
+  width: 45%;
+  text-align: right; /* Testo allineato a destra */
 }
-.diagram li {
-  padding: 14px 18px;
-  border-radius: 12px;
-  background: #eef5fb;
-  color: var(--text);
-  border-left: 5px solid var(--accent);
-}
-.hero {
-  display: grid;
-  gap: 24px;
-  margin-bottom: 30px;
-}
-.hero-text {
-  background: var(--card);
-  padding: 28px;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-}
-.hero-text .eyebrow {
-  display: inline-block;
-  margin-bottom: 14px;
-  font-size: 0.95rem;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.hero-figure,
-.content-card,
-.table-card,
-.image-card {
-  background: var(--card);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-}
-.hero-figure {
-  text-align: center;
-}
-.hero-figure figcaption,
-.figure-caption {
-  margin-top: 14px;
-  font-size: 0.95rem;
-  color: var(--muted);
-}
-.hero-figure svg,
-.image-figure svg {
-  width: 100%;
-  height: auto;
-  max-width: 720px;
-}
-.content-card h2,
-.table-card h2,
-.examples h2,
-.usage h2,
-.not-usage h2 {
-  margin-top: 0;
-  color: var(--accent);
-}
-.content-card h3,
-.example-item h3 {
-  margin-bottom: 8px;
-  color: #1f5a72;
-}
-.content-card ul,
-.usage ul,
-.not-usage ul {
-  padding-left: 20px;
-}
-.content-card ul li,
-.usage ul li,
-.not-usage ul li {
-  margin-bottom: 10px;
-}
-.content-card pre {
-  background: #eef5fb;
-  padding: 18px;
-  border-radius: 14px;
-  overflow-x: auto;
-  font-family: Consolas, Monaco, 'Courier New', monospace;
-  font-size: 0.92rem;
-  margin: 20px 0 0;
-}
-.content-card table,
-.table-card table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 16px;
-}
-.content-card th,
-.content-card td,
-.table-card th,
-.table-card td {
-  border: 1px solid #d8e5f0;
-  padding: 12px 14px;
+
+/* Item pari a destra */
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: auto;
+  margin-right: 0;
+  width: 45%;
   text-align: left;
 }
-.content-card thead th,
-.table-card thead th {
-  background: #f1f7fc;
+
+/* Il pallino sulla linea */
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border: 4px solid var(--cream); /* Cerchio bianco attorno */
+  border-radius: 50%;
+  transform: translateX(-50%); /* Centra sul punto */
+  box-shadow: 0 0 0 4px rgba(30,90,139,0.2); /* Alone intorno */
+  transition: var(--transition);
 }
-.comparison {
+
+/* Al hover il pallino si ingrandisce */
+.timeline-item:hover .timeline-dot {
+  width: 26px;
+  height: 26px;
+  box-shadow: 0 0 0 6px rgba(30,90,139,0.3);
+}
+
+.timeline-content {
+  background: #fff;
+  padding: 1.8rem;
+  border: 1px solid #E8E2D8;
+  border-radius: 8px;
+  transition: var(--transition);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.timeline-item:hover .timeline-content {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  border-color: var(--accent); /* Bordo diventa blu */
+}
+
+.timeline-content h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.6rem;
+}
+
+.timeline-content p {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* Su mobile la timeline diventa verticale su un lato */
+@media (max-width: 768px) {
+  .timeline::before { left: 20px; } /* Linea a sinistra */
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    width: calc(100% - 70px);
+    margin-left: 70px !important;
+    margin-right: 0 !important;
+    text-align: left !important;
+  }
+  .timeline-dot { left: 20px; } /* Pallino a sinistra */
+}
+
+/* ========================================
+   PHASES SECTION - Le 6 fasi
+   ======================================== */
+.phases-section { background: #fff; padding: 4rem 0; }
+.phase-cards-container { padding: 3rem 4%; background: var(--cream); }
+
+.phases-grid {
   display: grid;
-  gap: 20px;
-  margin-top: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Griglia responsiva */
+  gap: 2rem;
+  padding: 2rem 0;
 }
-.example-item {
-  margin-bottom: 18px;
+
+.phase-card {
+  background: #fff;
+  border: 1px solid #E8E2D8;
+  position: relative;
+  overflow: hidden;
 }
-.examples {
-  margin-top: 24px;
+
+/* Linea colorata che appare in alto al hover */
+.phase-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  transform: scaleX(0);       /* Parte da larghezza 0 */
+  transform-origin: left;
+  transition: transform 0.4s;
 }
-.examples p,
-.sources ol {
-  margin: 0;
+
+.phase-card:hover::before { transform: scaleX(1); } /* Si espande */
+.phase-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  transform: translateY(-6px); /* Si alza */
+  border-color: var(--accent);
 }
-.sources ol {
-  padding-left: 20px;
+
+.phase-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
 }
-.sources li {
-  margin-bottom: 14px;
+
+.phase-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 1.2rem;
 }
-.sources a {
+
+.phase-content {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+/* Il strong dentro fase-content appare come titolo */
+.phase-content strong {
+  color: var(--dark);
+  display: block;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1.08rem;
+}
+
+/* ========================================
+   ADVANTAGES & DISADVANTAGES - Vantaggi e Svantaggi
+   ======================================== */
+#advantages { padding: 4rem 4%; background: #fff; }
+.disadvantages-section { background: #fff; padding: 4rem 4%; }
+
+.advantages-grid,
+.disadvantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Card verde per vantaggi con gradiente */
+.advantage-card {
+  background: linear-gradient(135deg, rgba(46,125,82,0.08), rgba(46,125,82,0.02));
+  border-left: 4px solid var(--success);
+  position: relative;
+}
+
+/* Simbolo ✓ in alto a destra (semi-trasparente) */
+.advantage-card::before {
+  content: '✓';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--success);
+  opacity: 0.3;
+}
+
+.advantage-card:hover {
+  transform: translateX(8px); /* Si sposta a destra */
+  box-shadow: 0 8px 25px rgba(46,125,82,0.15);
+}
+
+/* Card rossa per svantaggi */
+.disadvantage-card {
+  background: linear-gradient(135deg, rgba(139,38,53,0.08), rgba(139,38,53,0.02));
+  border-left: 4px solid var(--danger);
+  position: relative;
+}
+
+/* Simbolo ✗ in alto a destra */
+.disadvantage-card::before {
+  content: '✗';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--danger);
+  opacity: 0.3;
+}
+
+.disadvantage-card:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(139,38,53,0.15);
+}
+
+.advantage-card h4,
+.disadvantage-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.8rem;
+}
+
+.advantage-card p,
+.disadvantage-card p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* ========================================
+   WHEN SECTION - Quando usare / non usare
+   ======================================== */
+.when-section {
+  background: var(--cream);
+  padding: 4rem 4%;
+}
+
+.when-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Due colonne: SI e NO */
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.when-card {
+  border-left: 5px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorazione di sfondo che galleggia */
+.when-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, currentColor, transparent 70%);
+  opacity: 0.05;
+  animation: float 4s ease-in-out infinite;
+}
+
+.when-yes {
+  background: rgba(46,125,82,0.08);
+  border-left-color: var(--success); /* Verde */
+}
+
+.when-no {
+  background: rgba(139,38,53,0.08);
+  border-left-color: var(--danger); /* Rosso */
+}
+
+.when-card:hover { transform: translateY(-6px); } /* Si alza */
+.when-yes:hover { box-shadow: 0 12px 35px rgba(46,125,82,0.15); }
+.when-no:hover { box-shadow: 0 12px 35px rgba(139,38,53,0.15); }
+
+.when-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1; /* Sopra la decorazione di sfondo */
+}
+
+.when-yes h4 { color: var(--success); }
+.when-no h4 { color: var(--danger); }
+
+.when-card ul {
+  list-style: none;
+  position: relative;
+  z-index: 1;
+}
+
+.when-card li {
+  padding: 0.7rem 0;
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-left: 1rem;
+}
+
+.when-card li::before {
+  content: '◦'; /* Pallino come bullet point */
+  margin-right: 1rem;
+  font-weight: 700;
+  margin-left: -1.5rem;
+}
+
+@media (max-width: 768px) {
+  .when-grid { grid-template-columns: 1fr; } /* Una colonna su mobile */
+}
+
+/* ========================================
+   EXAMPLES & BIBLIOGRAPHY - Esempi e Riferimenti
+   ======================================== */
+.examples-section {
+  padding: 3rem 4%;
+  background: var(--accent-light);
+}
+
+.example-card {
+  background: #fff;
+  border-left: 5px solid var(--accent);
+  margin-bottom: 1.8rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.example-card:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  transform: translateX(4px); /* Si sposta a destra */
+}
+
+.example-card h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--accent);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.example-card p {
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 0.7rem 0;
+  font-size: 1.05rem;
+}
+
+.bibliography-section {
+  padding: 3rem 4%;
+  background: #fff;
+}
+
+.bib-item {
+  border-left: 4px solid var(--accent);
+  background: linear-gradient(135deg, rgba(30,90,139,0.04), transparent); /* Sfumatura di fondo */
+  margin-bottom: 1.8rem;
+  box-shadow: none;
+}
+
+.bib-item:hover { box-shadow: 0 6px 20px rgba(30,90,139,0.1); }
+
+.bib-item strong {
+  color: var(--dark);
+  display: block;
+  margin-bottom: 0.7rem;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+.bib-item p {
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.8;
+  margin: 0 0 0.5rem 0;
+}
+
+.bib-item a {
   color: var(--accent);
   text-decoration: none;
+  transition: var(--transition);
+  font-weight: 500;
 }
-.sources a:hover {
+
+.bib-item a:hover {
+  color: var(--dark);
   text-decoration: underline;
 }
-.image-card {
-  display: grid;
-  gap: 18px;
+
+/* ========================================
+   FOOTER - Piede della pagina
+   ======================================== */
+footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 3.5rem 2rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
-@media (min-width: 720px) {
-  .intro {
-    grid-template-columns: 1fr 1fr;
+
+footer strong { color: var(--gold); }
+
+/* ========================================
+   RESPONSIVE - Adattamento a schermi piccoli
+   ======================================== */
+@media (max-width: 768px) {
+  /* Su tablet e mobile la navbar diventa più compatta */
+  nav.waterfall-nav { padding: 0.9rem 1.5rem; }
+  .nav-logo { font-size: 1.2rem; }
+  
+  /* Hero meno alto */
+  .hero-section { padding: 4rem 4% 3rem; min-height: auto; }
+  .sec-header { padding: 3rem 1rem 1.5rem; }
+  
+  /* Gridi da 2 colonne a 1 colonna */
+  .phases-grid, .advantages-grid, .disadvantages-grid { grid-template-columns: 1fr; }
+  
+  /* Timeline va a sinistra */
+  .timeline::before { left: 20px; }
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    width: calc(100% - 70px);
+    margin-left: 70px !important;
+    margin-right: 0 !important;
+    text-align: left !important;
   }
-  .phases {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .comparison {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .timeline-dot { left: 20px; }
 }
-@media (min-width: 980px) {
-  .hero {
-    grid-template-columns: 1.2fr 0.8fr;
-    align-items: center;
-  }
+
+/* Schermi molto piccoli (smartphone) */
+@media (max-width: 480px) {
+  :root { font-size: 16px; } /* Font base leggermente ridotto */
+  .hero-title { font-size: 2.2rem; }
+  .sec-header h2 { font-size: 1.8rem; }
+  .btn-cta { padding: 0.95rem 2.2rem; font-size: 0.9rem; }
+  nav.waterfall-nav { padding: 0.8rem 1rem; }
+  .nav-links { display: none; } /* Nascondi menu su mobile */
+}
+
+/* ========================================
+   UTILITIES - Classi riutilizzabili
+   ======================================== */
+.mt-5 { margin-top: 3rem !important; } /* Margine grande */
+.text-muted { color: var(--muted); }
+
+/* ========================================
+   ANIMATIONS - Animazioni globali
+   ======================================== */
+@keyframes fadeInOnScroll {
+  from { opacity: 0; transform: translateY(20px); } /* Entra dal basso */
+  to { opacity: 1; transform: translateY(0); }
+}
+
+section[id] { animation: fadeInOnScroll 0.6s ease-out; } /* Ogni sezione entra animata */
+
+/* ========================================
+   ACCESSIBILITY - Accessibilità
+   ======================================== */
+/* Quando clicchi un link/bottone, appare un bordo visibile per chi naviga da tastiera */
+a:focus, button:focus, span:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
